@@ -8,7 +8,7 @@ namespace:
 # specifies the image hosted in our harbor registry and its version number tag
 image:
   repository: manofer/feedbackapp
-  tag: 0.1
+  tag: 0.2
   # policty to only pull if image is not present on the system
   pullPolicy: IfNotPresent
 
