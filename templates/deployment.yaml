@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: feedbackapp-deploy
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: feedbackApp
+    managed-by: Helm
+    version: v1
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: feedbackApp
+
+  template:
+    metadata:
+      labels:
+        app: feedbackApp
+
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 9090
+
